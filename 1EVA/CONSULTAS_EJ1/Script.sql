@@ -81,13 +81,30 @@ Escribe una consulta SQL que muestre el nombre del producto más vendido y la ca
 	
 select
 	pol.full_product_name ,
-	count(pol.qty)
+	sum(pol.qty)
 from
 	pos_order_line pol
 group by
 	pol.full_product_name
-limit 1
+
 	
+
+select
+	pt.name->>'es_ES' as product_name,
+	sum(qty)
+from
+	pos_order_line pol ,
+	product_template pt ,
+	product_product pp
+where
+	pt.id = pp.product_tmpl_id
+	and
+	pol.product_id = pp.id
+group by
+	pt."name"
+order by
+	sum(qty) desc
+
 
 /*
  * Ejercicio 5: Proveedores y Total de Órdenes de Compra
@@ -99,9 +116,13 @@ Escribe una consulta SQL que muestre el nombre del proveedor y el número total 
  */
 
 	
+	select rp.name, sum(po.amount_total) total, count(rp.name) compras
+	from purchase_order po 
+	join res_partner rp on rp.id=po.partner_id 
+	group by rp.name
+	order by total,compras
 	
-	
-	
+
 	
 	
 	

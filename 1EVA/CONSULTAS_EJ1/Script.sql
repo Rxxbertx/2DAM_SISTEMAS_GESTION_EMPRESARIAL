@@ -231,14 +231,30 @@ Escribe una consulta SQL que muestre el nombre del producto y el número de sus 
  */
 	
 
-	select pp.*, count(pol.qty) as productosVendidos from product_product pp join pos_order_line pol on pol.product_id = pp.id
 	
-	join product_template pt on pt.id = pp.
-	
-	group by pp.id
-	
-	select * from product_attribute pa  
-	select * from product_template_attribute_value ptav 
 
-	
+
+SELECT
+    pt."name"->>'es_ES' AS nombre_producto,
+    COUNT(DISTINCT pav."name") AS cantidad_variantes_vendidas,
+    
+FROM
+    pos_order_line pol
+JOIN
+    product_product pp ON pol.product_id = pp.id
+JOIN
+    product_template pt ON pt.id = pp.product_tmpl_id
+JOIN
+    product_template_attribute_value ptav ON ptav.product_tmpl_id = pt.id
+JOIN
+    product_attribute pa ON pa.id = ptav.attribute_id
+JOIN
+    product_attribute_value pav ON pav.id = ptav.product_attribute_value_id
+GROUP BY
+    pt."name"->>'es_ES'
+ORDER BY
+    cantidad_variantes_vendidas DESC
+LIMIT 1;
+
+
 

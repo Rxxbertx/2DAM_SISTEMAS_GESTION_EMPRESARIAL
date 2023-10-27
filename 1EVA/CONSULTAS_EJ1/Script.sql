@@ -127,6 +127,11 @@ group by
 	rp."name"
 
 	
+	select rp.name, sum(po.amount_total) total, count(rp.name) compras
+	from purchase_order po 
+	join res_partner rp on rp.id=po.partner_id 
+	group by rp.name
+	order by total,compras
 	
 /*
  * Ejercicio 6: Productos Vendidos en Punto de Venta con Valor Superior a 1000
@@ -225,38 +230,15 @@ Escribe una consulta SQL que muestre el nombre del producto y el número de sus 
  * 
  */
 	
-WITH VariantesVendidas AS (
-    SELECT
-        pt."name" AS nombre_producto,
-        pa."name" AS nombre_atributo,
-        pav."name" AS nombre_variante,
-        pol.qty AS cantidad_ventas
-    FROM
-        pos_order_line pol
-    JOIN
-        product_product pp ON pol.product_id = pp.id
-    JOIN
-        product_template pt ON pt.id = pp.product_tmpl_id
-    JOIN
-        product_template_attribute_value ptav ON ptav.product_tmpl_id = pt.id
-    JOIN
-        product_attribute pa ON pa.id = ptav.attribute_id
-    JOIN
-        product_attribute_value pav ON pav.id = ptav.product_attribute_value_id
-    GROUP BY
-        pt."name", pa."name", pav."name",pp.id , pol.product_id ,pol.qty
-)
 
-SELECT(nombre_producto, nombre_atributo)
-    nombre_producto,
-    nombre_atributo,
-    nombre_variante,
-    cantidad_ventas
-FROM
-    VariantesVendidas
-ORDER BY
-    nombre_producto, nombre_atributo, cantidad_ventas DESC;
+	select pp.*, count(pol.qty) as productosVendidos from product_product pp join pos_order_line pol on pol.product_id = pp.id
+	
+	join product_template pt on pt.id = pp.
+	
+	group by pp.id
+	
+	select * from product_attribute pa  
+	select * from product_template_attribute_value ptav 
 
-
-
+	
 

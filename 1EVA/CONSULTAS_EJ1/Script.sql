@@ -127,6 +127,11 @@ group by
 	rp."name"
 
 	
+	select rp.name, sum(po.amount_total) total, count(rp.name) compras
+	from purchase_order po 
+	join res_partner rp on rp.id=po.partner_id 
+	group by rp.name
+	order by total,compras
 	
 /*
  * Ejercicio 6: Productos Vendidos en Punto de Venta con Valor Superior a 1000

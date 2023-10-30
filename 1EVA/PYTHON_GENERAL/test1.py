@@ -58,10 +58,29 @@ print(str(float(entero*(entero+1)/2)));
     
 peso = float(input("dame tu peso en kg pelon"))
 estatura = float(input("dame tu estatura en metros pingas"))
-imc = round(float(peso)/float(estatura)**2,2)
-print("TU IMC ESSSSSSSSSSSSSSSSSSSSSSSSS: "+imc)
+imc = round(float(peso)/(float(estatura)**2),2)
+print("TU IMC ESSSSSSSSSSSSSSSSSSSSSSSSS: "+str(imc))
     
     
+"""
+Ejercicio 8
+
+Escribir un programa que pida al usuario dos números enteros y muestre por pantalla la <n> entre <m> da un cociente <c>
+y un resto <r> donde <n> y <m> son los números introducidos por el usuario, y <c> y <r> 
+son el cociente y el resto de la división entera respectivamente.
+
+"""
+
+entero1= float(input("dame un numero 1"))
+entero2= float(input("dame un numero 2"))
+
+if(entero2==0){
+    print("no puedes dividir entre 0")
+}else{
     
+    print(f"DIISION DE {numero1} y de {numero2} coeficiente: {entero1/entero2} resto: {entero1%entero2}")
+    
+}
+
     
     

@@ -62,25 +62,26 @@ imc = round(float(peso)/(float(estatura)**2),2)
 print("TU IMC ESSSSSSSSSSSSSSSSSSSSSSSSS: "+str(imc))
     
     
-"""
-Ejercicio 8
-
-Escribir un programa que pida al usuario dos números enteros y muestre por pantalla la <n> entre <m> da un cociente <c>
-y un resto <r> donde <n> y <m> son los números introducidos por el usuario, y <c> y <r> 
-son el cociente y el resto de la división entera respectivamente.
 
 """
+Ejercicio 10
 
-entero1= float(input("dame un numero 1"))
-entero2= float(input("dame un numero 2"))
+Escribir un programa que pida al usuario un número entero y muestre por pantalla si es par o impar.
 
-if(entero2==0){
-    print("no puedes dividir entre 0")
-}else{
+"""
+
+num = int(input("dame un numero perro"));
+def parImpar(num):
     
-    print(f"DIISION DE {numero1} y de {numero2} coeficiente: {entero1/entero2} resto: {entero1%entero2}")
-    
-}
+    if num % 2 == 0:
+        return True
+    else:
+        return False
 
+    
+try:{
+    print(f"tu numero {num} es {'PAR' if parImpar(num) else 'IMPAR'}")};
+except ValueError:{
+    print("error")}
     
     

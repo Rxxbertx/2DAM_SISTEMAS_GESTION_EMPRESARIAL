@@ -171,3 +171,5 @@ def arroz(num:int):
     return arroz(num-1)*2
 
 print(arroz(5))
+
+
